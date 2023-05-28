@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.todo_list.R;
+
 public class reset_pass extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

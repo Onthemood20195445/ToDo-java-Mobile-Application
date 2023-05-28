@@ -6,7 +6,18 @@
         <entry key="..\:/Users/Batoo/OneDrive/Documents/GitHub/ToDo-java-Mobile-Application/app/src/main/res/layout/home_page.xml" value="0.264" />
         <entry key="..\:/Users/Batoo/OneDrive/Documents/GitHub/ToDo-java-Mobile-Application/app/src/main/res/layout/sign_in.xml" value="0.1" />
         <entry key="..\:/Users/Batoo/OneDrive/Documents/GitHub/ToDo-java-Mobile-Application/app/src/main/res/layout/sign_up.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable/ic_baseline_delete_sweep_24.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable/ic_launcher_background.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/drawable/plus_svgrepo_com.xml" value="0.186" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/home_page.xml" value="0.264" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/list_view_item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/sign_in.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/sign_up.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/onthe/StudioProjects/ToDo-java-Mobile-Application/app/src/main/res/layout/tes.xml" value="0.2734375" />
         <entry key="..\:/Users/onthe/StudioProjects/Todolist/app/src/main/res/drawable/rounded_background.xml" value="0.1" />
         <entry key="..\:/Users/onthe/StudioProjects/Todolist/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/onthe/StudioProjects/Todolist/app/src/main/res/layout/sign_in.xml" value="0.2" />
@@ -14,7 +25,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

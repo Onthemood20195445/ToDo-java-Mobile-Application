@@ -10,4 +10,5 @@
     <color name="grey">#CDCBCB</color>
     <color name="pink">#D6336C</color>
     <color name="background">#212529</color>
+    <color name="lightgrey">#8ACED4DA</color>
 </resources>
