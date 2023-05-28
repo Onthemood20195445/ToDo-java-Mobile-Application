@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todo_list.R;
+
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
@@ -55,6 +57,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                 Toast.makeText(buttonView.getContext(), item.getText()+" Done", Toast.LENGTH_SHORT).show();
                 activity.addItem2(item.getText());
                 activity.deleteItem(position);
+                activity.showNotification("Task","Task "+ item.getText() +" Done","Notification about Task Done");
             }
         });
 

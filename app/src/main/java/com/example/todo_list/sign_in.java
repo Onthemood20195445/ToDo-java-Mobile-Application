@@ -1,7 +1,11 @@
 package com.example.todo_list;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import com.example.todo_list.R;
 
 public class sign_in extends AppCompatActivity {
     Button signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +44,7 @@ public class sign_in extends AppCompatActivity {
 
                 if (User.equals("Not Found")) {
                     Toast.makeText(getApplicationContext(), "User not found", Toast.LENGTH_LONG).show();
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Login successfully", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(sign_in.this, MainActivity.class);
@@ -42,18 +53,13 @@ public class sign_in extends AppCompatActivity {
 
             }
         });
-//        back_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(sign_in.this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(sign_in.this, sign_up.class);
                 startActivity(intent);
+
             }
         });
         TextView forgot = (TextView) findViewById(R.id.forget_pass);
@@ -65,4 +71,5 @@ public class sign_in extends AppCompatActivity {
             }
         });
 }
+
 }

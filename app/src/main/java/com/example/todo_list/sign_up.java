@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.todo_list.R;
+
 public class sign_up extends Activity {
     Button signin;
     @Override
