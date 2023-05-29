@@ -15,7 +15,10 @@ This is a simple Android app that allows users to create, manage, and organize t
 2) Android SDK.
 3) SQLite database for storing user data.
 
+# Logo
+ 
+  --------------------------------------------![2222](https://github.com/Bad-ri/ToDo-java-Mobile-Application/assets/74131474/06bfee18-2daa-4964-9e3f-5721dc5e8a56)--------------------------------------------
+
 # Design
-![TO-Do-APP](https://github.com/Bad-ri/ToDo-java-Mobile-Application/assets/74131474/ff3d8837-b3e2-482e-981e-d82bc6c506b1)
 
 
