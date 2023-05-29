@@ -17,7 +17,7 @@ This is a simple Android app that allows users to create, manage, and organize t
 
 # Logo
  
-  --------------------------------------------![2222](https://github.com/Bad-ri/ToDo-java-Mobile-Application/assets/74131474/06bfee18-2daa-4964-9e3f-5721dc5e8a56)--------------------------------------------
+  ---------------------------------![2222](https://github.com/Bad-ri/ToDo-java-Mobile-Application/assets/74131474/06bfee18-2daa-4964-9e3f-5721dc5e8a56)--------------------------
 
 # Design
 
