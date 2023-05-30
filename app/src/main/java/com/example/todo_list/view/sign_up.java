@@ -14,6 +14,7 @@ import com.example.todo_list.model.User;
 
 public class sign_up extends Activity {
     Button signin;
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +26,12 @@ public class sign_up extends Activity {
         Button SignUpBTN = (Button) findViewById(R.id.signup_button);
         PortalDB db = new PortalDB(this);
         Button signUpBTN = (Button) findViewById(R.id.signup_button);
+        username = usernameTextField.getText().toString();
+
         signUpBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                username = usernameTextField.getText().toString();
                 boolean flag ;
                 User user1 = new User(usernameTextField.getText().toString(),emailTextField.getText().toString(),passwordTextField.getText().toString());
                 flag = db.addNewUser(user1);
@@ -40,7 +44,9 @@ public class sign_up extends Activity {
                 }
                 System.out.println("omar "+usernameTextField.getText());
 
+
                 Intent intent = new Intent(sign_up.this, MainActivity.class);
+                intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }
         });
