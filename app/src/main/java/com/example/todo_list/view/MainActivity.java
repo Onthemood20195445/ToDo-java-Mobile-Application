@@ -1,4 +1,4 @@
-package com.example.todo_list.activities;
+package com.example.todo_list.view;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -22,11 +22,11 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todo_list.PortalDB;
+import com.example.todo_list.database.PortalDB;
 import com.example.todo_list.R;
-import com.example.todo_list.Task;
-import com.example.todo_list.TodoAdapter;
-import com.example.todo_list.TodoItem;
+import com.example.todo_list.model.Task;
+import com.example.todo_list.controller.TodoAdapter;
+import com.example.todo_list.model.TodoItem;
 
 import java.util.ArrayList;
 import java.util.List;

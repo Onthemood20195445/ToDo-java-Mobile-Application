@@ -1,4 +1,4 @@
-package com.example.todo_list.activities;
+package com.example.todo_list.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.todo_list.PortalDB;
+import com.example.todo_list.database.PortalDB;
 import com.example.todo_list.R;
-import com.example.todo_list.reset_pass;
 
 public class sign_in extends AppCompatActivity {
     Button signup;

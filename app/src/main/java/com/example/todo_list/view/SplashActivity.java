@@ -1,4 +1,4 @@
-package com.example.todo_list.activities;
+package com.example.todo_list.view;
 
 import android.content.Intent;
 import android.os.Bundle;

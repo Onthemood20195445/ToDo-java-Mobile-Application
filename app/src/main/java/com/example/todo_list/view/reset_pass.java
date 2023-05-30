@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.todo_list.activities.sign_in;
+import com.example.todo_list.R;
 
 public class reset_pass extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
+import com.example.todo_list.model.Task;
+import com.example.todo_list.model.User;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PortalDB extends SQLiteOpenHelper {
     private static String databaseName = "PortalDb";

@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.model;
 
 public class TodoItem {
     private String text;

@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.controller;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.todo_list.activities.MainActivity;
+import com.example.todo_list.R;
+import com.example.todo_list.model.TodoItem;
+import com.example.todo_list.view.MainActivity;
+import com.example.todo_list.database.PortalDB;
 
 import java.util.List;
 
