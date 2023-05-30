@@ -68,22 +68,29 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         Intent intent = getIntent();
         if (intent.hasExtra("USERNAME")) {
             username = intent.getStringExtra("USERNAME");
+//            Toast toast1 = Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT);
+//            toast1.show();
         }
         else {
             username="m";
+//            Toast toast1 = Toast.makeText(getApplicationContext(), username, Toast.LENGTH_SHORT);
+//            toast1.show();
         }
+        items.clear();
         String type = "incompleted";
         for (int i = 0; i < db.RetrieveTask(username,type).size(); i++) {
             if (db.RetrieveTask(username,type).get(i).toString() != null) {
                 addItem(db.RetrieveTask(username,type).get(i).toString());
             }
         }
-        String type2 = "completed";
-        for (int i = 0; i < db.RetrieveTask(username,type2).size(); i++) {
-            if (db.RetrieveTask(username,type2).get(i).toString() != null) {
-                addItem2(db.RetrieveTask(username,type2).get(i).toString());
-            }
-        }
+//        String type2 = "completed";
+//        for (int i = 0; i < db.RetrieveTask(username,type2).size(); i++) {
+//            if (db.RetrieveTask(username,type2).get(i).toString() != null) {
+//                addItem2(db.RetrieveTask(username,type2).get(i).toString());
+//            }
+//        }
+//        Toast toast3 = Toast.makeText(getApplicationContext(), String.valueOf(items2.size()), Toast.LENGTH_SHORT);
+//        toast3.show();
         ImageView btn = findViewById(R.id.clearAllBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,10 +124,13 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
                         String msg = txt + " is Added";
                         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
                         toast.show();
+//                        Toast toast1 = Toast.makeText(getApplicationContext(), String.valueOf(items2.size()), Toast.LENGTH_SHORT);
+//                        toast1.show();
                         adapter.notifyDataSetChanged();
                         input.setText("");
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                     } else {
                         String msg = txt + "Error";
                         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
