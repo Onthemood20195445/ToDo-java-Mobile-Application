@@ -53,7 +53,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             item.setChecked(isChecked);
             if (isChecked) {
-
                 activity.addItem2(item.getText());
                 activity.deleteItem(position);
                 activity.showNotification("Task", "Task " + item.getText() + " Done", "Notification about Task Done");

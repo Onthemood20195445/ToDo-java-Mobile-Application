@@ -73,6 +73,9 @@ public class PortalDB extends SQLiteOpenHelper {
         PortalDb.close();
         return true;
     }
+
+
+
     public static String login(PortalDB db, String username, String password) {
 
         String validate = String.valueOf(db.validateData(username, password));
@@ -83,7 +86,7 @@ public class PortalDB extends SQLiteOpenHelper {
         System.out.println("validate  " + validate);
         return validate;
     }
-    @Override
+//    @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS Task");
         db.execSQL("DROP TABLE IF EXISTS User");
@@ -104,6 +107,10 @@ public class PortalDB extends SQLiteOpenHelper {
                 System.out.println(c.toString());
             }
         }
+        else{
+            list.add("muhamed");
+            return list;
+        }
         PortalDb.close();
         return list;
     }
@@ -120,7 +127,7 @@ public class PortalDB extends SQLiteOpenHelper {
     public void updateStat(String username, String title) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("status", "completed");
-        PortalDb = getReadableDatabase();
+        PortalDb = getWritableDatabase();
         PortalDb.update("Task", contentValues, "UserName=? and title=?", new String[]{username, title});
         PortalDb.close();
     }
