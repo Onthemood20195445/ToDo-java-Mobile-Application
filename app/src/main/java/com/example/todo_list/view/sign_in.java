@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.todo_list.controller.TodoAdapter;
 import com.example.todo_list.database.PortalDB;
 import com.example.todo_list.R;
 
 public class sign_in extends AppCompatActivity {
     Button signup;
+    public String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,6 @@ public class sign_in extends AppCompatActivity {
         setContentView(R.layout.sign_in);
         signup = findViewById(R.id.signup_button);
         Button signIn = (Button) findViewById(R.id.sign_in);
-        //ImageButton back_btn = (ImageButton) findViewById(R.id.back_button);
         EditText usernameTextField = (EditText)findViewById(R.id.user);
         EditText passwordTextField = (EditText)findViewById(R.id.pass);
         PortalDB db = new PortalDB(this);
@@ -30,7 +31,7 @@ public class sign_in extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String User;
-                String userName = usernameTextField.getText().toString();
+                userName = usernameTextField.getText().toString();
                 String password = passwordTextField.getText().toString();
                 User = db.login( db, userName, password);
 
@@ -40,6 +41,7 @@ public class sign_in extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Login successfully", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(sign_in.this, MainActivity.class);
+                    intent.putExtra("USERNAME", userName);
                     startActivity(intent);
                 }
 

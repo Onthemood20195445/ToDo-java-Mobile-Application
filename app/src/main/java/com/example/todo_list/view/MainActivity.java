@@ -1,10 +1,13 @@
 package com.example.todo_list.view;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,11 +31,10 @@ import com.example.todo_list.R;
 import com.example.todo_list.model.Task;
 import com.example.todo_list.controller.TodoAdapter;
 import com.example.todo_list.model.TodoItem;
+import com.example.todo_list.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoItemClickListener {
     private List<TodoItem> items;
     private TodoAdapter adapter;
@@ -41,13 +44,14 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     public List<TodoItem> items2;
     public TodoAdapter adapter2;
     public RecyclerView recyclerView2;
-    private static final String CHANNEL_ID = "button_clicked_notification";
-
+    private static final String CHANNEL_ID = "toto";
+    public String username ;
+    PortalDB db = new PortalDB(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PortalDB db = new PortalDB(this);
+
         items = new ArrayList<>();
         input = findViewById(R.id.inp);
         addNote = findViewById(R.id.add_item);
@@ -62,25 +66,23 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         adapter2 = new TodoAdapter(items2, this, this);
         recyclerView2.setAdapter(adapter2);
-        for (int i = 0; i < db.RetrieveTask("m").size(); i++) {
-//            String msg = "New " + db.RetrieveTask("m").get(i);
-//            Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-//            toast.show();
-            if (db.RetrieveTask("m").get(i).toString() != null) {
-
-                addItem(db.RetrieveTask("m").get(i).toString());
-
+        Intent intent = getIntent();
+        if (intent.hasExtra("USERNAME")) {
+            username = intent.getStringExtra("USERNAME");
+        }
+        else {
+            username="m";
+        }
+        for (int i = 0; i < db.RetrieveTask(username).size(); i++) {
+            if (db.RetrieveTask(username).get(i).toString() != null) {
+                addItem(db.RetrieveTask(username).get(i).toString());
             }
         }
+
         ImageView btn = findViewById(R.id.clearAllBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String msg = "New " + db.RetrieveTask("m","");
-//                Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-//                toast.show();
-//                System.out.println();
-
                 items.clear();
                 adapter.notifyDataSetChanged();
             }
@@ -93,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
                 startActivity(intent);
             }
         });
-
-
         addNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
                     toast.show();
                 } else {
                     addItem(txt);
-                    Task task = new Task(txt, "m", "incompleted");
+                    Task task = new Task(txt, username, "incompleted");
                     boolean checker = db.addNewTask(task);
                     if (checker) {
                         String msg = txt + " is Added";
@@ -125,27 +125,21 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
             }
         });
     }
-
     @Override
     public void onItemClick(int position) {
         TodoItem item = items.get(position);
-
-
         item.setChecked(!item.isChecked());
         adapter.notifyItemChanged(position);
     }
-
     @Override
     public void onItemLongClick(int position) {
         deleteItem(position);
     }
-
     public void addItem(String text) {
         TodoItem item = new TodoItem(text);
         items.add(item);
         adapter.notifyItemInserted(items.size() - 1);
     }
-
     public void addItem2(String text) {
         PortalDB db = new PortalDB(this);
         TodoItem newItem = new TodoItem(text);
@@ -153,47 +147,41 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         items2.add(newItem);
         adapter2.notifyItemInserted(items2.size() - 1);
     }
-
     public void deleteItem(int position) {
+        String taskTitle = items.get(position).toString();
+        db.updateStat(username, taskTitle);
         items.remove(position);
         adapter.notifyDataSetChanged();
     }
-
-    public void clearAll() {
-        items.clear();
-        adapter.notifyDataSetChanged();
-    }
-
     public void showNotification(String title, String task, String description) {
-        // Create a notification channel for Android Oreo and above
+        // Check if device is running Android Oreo or higher
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create a notification channel with the given ID and name
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Button Clicked Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            // Set the description for the notification channel
             channel.setDescription(description);
+            // Enable the notification light and set its color
             channel.enableLights(true);
             channel.setLightColor(Color.BLUE);
+            // Get the NotificationManager and create the notification channel
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-
-        // Build the notification and display it
+        // Load the large icon for the notification
+        Bitmap largeIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.koko);
+        // Build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle(title)
-                .setContentText(task)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setLargeIcon(largeIcon) // Set the large icon for the notification
+                .setSmallIcon(R.drawable.koko) // Set the small icon for the notification
+                .setContentTitle(title) // Set the title for the notification
+                .setContentText(task) // Set the text for the notification
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT); // Set the notification priority
+
+        // Get the NotificationManager and display the notification
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
         }
         notificationManager.notify(0, builder.build());
-    }
-
+}
 
 }
