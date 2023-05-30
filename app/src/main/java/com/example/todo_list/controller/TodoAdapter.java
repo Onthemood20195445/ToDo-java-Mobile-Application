@@ -21,6 +21,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     public List<TodoItem> items;
     public OnTodoItemClickListener listener;
     public MainActivity activity;
+    //public String username  =  activity.username;
 
     public interface OnTodoItemClickListener {
         void onItemClick(int position);
@@ -58,10 +59,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                 activity.showNotification("Task", "Task " + item.getText() + " Done", "Notification about Task Done");
             }
         });
-
         holder.itemView.setOnLongClickListener(v -> {
             if (activity.items2.contains(item)) {
-
 
             } else {
                 listener.onItemLongClick(position);

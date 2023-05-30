@@ -31,9 +31,7 @@ public class PortalDB extends SQLiteOpenHelper {
         String[] rowdetails = {"UserName"};
         String[] args = {userName, password};
         String UserName = "Not Found";
-
         Cursor c = PortalDb.query("User", rowdetails, "UserName=? and password = ?", args, null, null, null);
-
         if (c != null) {
             c.moveToFirst();
             if (c.getCount() > 0) {
@@ -91,11 +89,11 @@ public class PortalDB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS User");
         onCreate(db);
     }
-    public ArrayList RetrieveTask(String user) {
+    public ArrayList RetrieveTask(String user,String type) {
         ArrayList list = new ArrayList<>();
         String title = "Error";
         PortalDb = getReadableDatabase();
-        Cursor c = PortalDb.rawQuery("Select * from Task where UserName=? And status=? ", new String[]{user, "incompleted"});
+        Cursor c = PortalDb.rawQuery("Select * from Task where UserName=? And status=? ", new String[]{user, type});
         if (c != null) {
             c.moveToFirst();
             while(!c.isAfterLast())
@@ -109,9 +107,19 @@ public class PortalDB extends SQLiteOpenHelper {
         PortalDb.close();
         return list;
     }
+    public void RemoveTask(String username, String title) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Task", "UserName=? and title=?", new String[]{username, title});
+        db.close();
+    }
+    public void DeleteAll(String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Task", "UserName=?", new String[]{username});
+        db.close();
+    }
     public void updateStat(String username, String title) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("status", "incompleted");
+        contentValues.put("status", "completed");
         PortalDb = getReadableDatabase();
         PortalDb.update("Task", contentValues, "UserName=? and title=?", new String[]{username, title});
         PortalDb.close();

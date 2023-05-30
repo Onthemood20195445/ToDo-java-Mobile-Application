@@ -22,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +30,6 @@ import com.example.todo_list.R;
 import com.example.todo_list.model.Task;
 import com.example.todo_list.controller.TodoAdapter;
 import com.example.todo_list.model.TodoItem;
-import com.example.todo_list.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         adapter2 = new TodoAdapter(items2, this, this);
         recyclerView2.setAdapter(adapter2);
+
         Intent intent = getIntent();
         if (intent.hasExtra("USERNAME")) {
             username = intent.getStringExtra("USERNAME");
@@ -73,16 +72,23 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         else {
             username="m";
         }
-        for (int i = 0; i < db.RetrieveTask(username).size(); i++) {
-            if (db.RetrieveTask(username).get(i).toString() != null) {
-                addItem(db.RetrieveTask(username).get(i).toString());
+        String type = "incompleted";
+        for (int i = 0; i < db.RetrieveTask(username,type).size(); i++) {
+            if (db.RetrieveTask(username,type).get(i).toString() != null) {
+                addItem(db.RetrieveTask(username,type).get(i).toString());
             }
         }
-
+        String type2 = "completed";
+        for (int i = 0; i < db.RetrieveTask(username,type2).size(); i++) {
+            if (db.RetrieveTask(username,type2).get(i).toString() != null) {
+                addItem2(db.RetrieveTask(username,type2).get(i).toString());
+            }
+        }
         ImageView btn = findViewById(R.id.clearAllBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.DeleteAll(username);
                 items.clear();
                 adapter.notifyDataSetChanged();
             }
@@ -141,15 +147,15 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         adapter.notifyItemInserted(items.size() - 1);
     }
     public void addItem2(String text) {
-        PortalDB db = new PortalDB(this);
         TodoItem newItem = new TodoItem(text);
         newItem.setChecked2(true); // set isChecked2 to true by default
+        db.updateStat(username,text);
         items2.add(newItem);
         adapter2.notifyItemInserted(items2.size() - 1);
     }
     public void deleteItem(int position) {
-        String taskTitle = items.get(position).toString();
-        db.updateStat(username, taskTitle);
+        String taskTitle = items.get(position).getText();
+        db.RemoveTask(username, taskTitle);
         items.remove(position);
         adapter.notifyDataSetChanged();
     }
