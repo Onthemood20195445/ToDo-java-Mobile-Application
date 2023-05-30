@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.todo_list.PortalDB;
 import com.example.todo_list.R;
+import com.example.todo_list.User;
 
 public class sign_up extends Activity {
     Button signin;

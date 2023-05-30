@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.todo_list.R;
+import com.example.todo_list.activities.sign_in;
 
 public class reset_pass extends AppCompatActivity {
     @Override
@@ -19,7 +19,7 @@ public class reset_pass extends AppCompatActivity {
     back_btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(reset_pass.this,sign_in.class);
+            Intent intent = new Intent(reset_pass.this, sign_in.class);
             startActivity(intent);
         }
     });

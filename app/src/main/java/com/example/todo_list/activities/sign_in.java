@@ -1,25 +1,18 @@
-package com.example.todo_list;
+package com.example.todo_list.activities;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
+import com.example.todo_list.PortalDB;
 import com.example.todo_list.R;
+import com.example.todo_list.reset_pass;
 
 public class sign_in extends AppCompatActivity {
     Button signup;
@@ -66,7 +59,7 @@ public class sign_in extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(sign_in.this,reset_pass.class);
+                Intent intent = new Intent(sign_in.this, reset_pass.class);
                 startActivity(intent);
             }
         });
