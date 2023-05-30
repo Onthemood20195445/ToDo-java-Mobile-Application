@@ -1,4 +1,4 @@
-package com.example.todo_list;
+package com.example.todo_list.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class reset_pass extends AppCompatActivity {
     back_btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(reset_pass.this,sign_in.class);
+            Intent intent = new Intent(reset_pass.this, sign_in.class);
             startActivity(intent);
         }
     });
