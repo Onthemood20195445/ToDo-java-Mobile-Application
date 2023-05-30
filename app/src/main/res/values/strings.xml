@@ -5,4 +5,6 @@
     <string name="signin">Signup</string>
     <string name="reset">Reset</string>
     <string name="trouble_logging_in">Trouble logging in?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
